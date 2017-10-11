@@ -27,13 +27,27 @@ namespace TravelBlog.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Person Person)
+        public IActionResult Create(Person Person, int locationId)
         {
             db.People.Add(Person);
             db.SaveChanges();
             return RedirectToAction("Index", "Location");
         }
 
+        public IActionResult AddLocation(int PersonId)
+        {
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
+            ViewBag.Person = db.People.FirstOrDefault(x => x.PersonId == PersonId);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddLocation(LocationPerson locationPerson)
+        {
+            db.LocationPerson.Add(locationPerson);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Location");
+        }
         public IActionResult Delete(int id)
         {
             var myPerson = db.People.FirstOrDefault(People => People.PersonId == id);

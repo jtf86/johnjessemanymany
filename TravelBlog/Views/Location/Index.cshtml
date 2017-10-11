@@ -45,6 +45,7 @@
     			@foreach(var person in ViewBag.people)
     			{
                     <li>@Html.ActionLink((string)person.Name, "Details", "Person", new { id = person.PersonId })</li>
+                    <li>@Html.ActionLink("Add Location to "+(string)person.Name, "AddLocation", "Person", new { PersonId = person.PersonId})</li>
     			}
 			</ul>
 			

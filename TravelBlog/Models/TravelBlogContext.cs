@@ -15,6 +15,14 @@ namespace TravelBlog.Models
             //Location to Person Many-to-Many:
             modelBuilder.Entity<LocationPerson>()
                         .HasKey(x => new { x.LocationId, x.PersonId });
+            modelBuilder.Entity<LocationPerson>()
+                        .HasOne(x => x.Location)
+                        .WithMany(x => x.LocationPerson)
+                        .HasForeignKey(x => x.LocationId);
+            modelBuilder.Entity<LocationPerson>()
+                        .HasOne(x => x.Person)
+                        .WithMany(x => x.LocationPerson)
+                        .HasForeignKey(x => x.PersonId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

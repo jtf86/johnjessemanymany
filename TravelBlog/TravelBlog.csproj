@@ -23,7 +23,6 @@
   <ItemGroup>
     <Folder Include="Views\Location\" />
     <Folder Include="Views\Experience\" />
-    <Folder Include="Views\Person\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\HomeController.cs" />
